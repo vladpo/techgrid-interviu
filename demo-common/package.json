@@ -1,0 +1,34 @@
+{
+  "name": "demo-common",
+  "license": "ISC",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "build:check": "tsc --noEmit",
+    "build:watch": "tsc --watch",
+    "clean": "rm index.js index.d.ts index.js.map 2> /dev/null",
+    "clean:modules": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/socket.io": "^3.0.1"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ]
+}

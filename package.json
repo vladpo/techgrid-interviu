@@ -1,0 +1,33 @@
+{
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "name": "demo-parent",
+  "scripts": {
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd demo-client && npm run build",
+    "build:server": "cd demo-server && npm run build",
+    "build:common:watch": "cd demo-common && npm run build:watch",
+    "clean": "npm run clean:client && npm run clean:server",
+    "clean:client": "cd demo-client && npm run clean",
+    "clean:client:modules": "cd demo-client && npm run clean:modules",
+    "clean:common": "cd demo-common && npm run clean",
+    "clean:common:modules": "cd demo-common && npm run clean:modules",
+    "clean:modules": "rm -rf node_modules && npm run clean:client:modules && npm run clean:server:modules && npm run clean:common:modules",
+    "clean:server": "cd demo-server && npm run clean",
+    "clean:server:modules": "cd demo-server && npm run clean:modules",
+    "deploy-assets": "npm run build:client && rm -rf demo-server/public && cp -a demo-client/dist demo-server/public",
+    "format:check": "prettier --list-different './demo-{client,common,server}/**/*.{js,ts,tsx,vue}' './**/*.json'",
+    "format:fix": "prettier --write './demo-{client,common,server}/**/*.{js,ts,tsx,vue}' './**/*.json'",
+    "install:client": "cd demo-client && npm install",
+    "install:common": "cd demo-common && npm install",
+    "install:server": "cd demo-server && npm install",
+    "install": "npm run install:client && npm run install:server && npm run install:common",
+    "dev": "concurrently --kill-others \"npm run build:common:watch\" \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd demo-client && npm run dev",
+    "dev:server": "cd demo-server && npm run dev",
+    "start:server": "cd demo-server && npm run start"
+  }
+}
