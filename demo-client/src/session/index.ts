@@ -55,8 +55,8 @@ const logout = async (onError: (err: HttpError) => void): Promise<void> =>
 const resetSession = () => {
   session.value.jwt = undefined
   session.value.user = undefined
-  const {webSocket} = useWebSocket();
-  webSocket.value.socket?.disconnect();
+  const { webSocket } = useWebSocket()
+  webSocket.value.socket?.disconnect()
   router.push(PATH_HOME)
 }
 

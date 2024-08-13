@@ -12,7 +12,7 @@ const formInputs: FormInput<PublicUser & { password: string }>[] = [
   { field: 'password', type: 'password' }
 ]
 
-const onSubmit = (user: PublicUser, onError: (errMsg: string) => void) => {
+const onSubmit = (user: PublicUser & { password: string }, onError: (errMsg: string) => void) => {
   restApi.tryRegister(user, (e) => {
     e.ifRight(() => router.push(PATH_LOGIN)).ifLeft((err) => onError(err.message))
   })

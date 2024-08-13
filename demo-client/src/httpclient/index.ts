@@ -88,7 +88,7 @@ const tryRefreshToken = (): Promise<Either<HttpError, string>> => {
 }
 
 const tryRegister = async (
-  user: PublicUser,
+  user: PublicUser & { password: string },
   onResponse: (e: Either<HttpError, void>) => void
 ): Promise<void> => {
   const e = await tryFetchData(() => axios.post<void>(PATH_REGISTER, user))

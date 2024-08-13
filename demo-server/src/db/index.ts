@@ -8,7 +8,7 @@ mongoose.set('strictQuery', false)
 export class DbError extends AppError {
   constructor(
     message: string,
-    public readonly status: number,
+    public readonly status: number
   ) {
     super(message, status)
   }
@@ -16,7 +16,7 @@ export class DbError extends AppError {
 
 export async function createDbConnect(): Promise<void> {
   try {
-    await mongoose.connect('mongodb://localhost:27017/demo')
+    await mongoose.connect('mongodb://localhost:27017/flower-shop')
     console.log('Connected to DB')
   } catch (err) {
     console.log(err)
@@ -26,7 +26,7 @@ export async function createDbConnect(): Promise<void> {
 
 export function tryQuery<ResultType, DocType>(
   f: () => QueryWithHelpers<ResultType | null, DocType>,
-  errorMsg: string,
+  errorMsg: string
 ): EitherAsync<DbError, Maybe<ResultType>> {
   return EitherAsync(async () => {
     try {
@@ -36,7 +36,7 @@ export function tryQuery<ResultType, DocType>(
       if (e instanceof Error.CastError) {
         throw new DbError(errorMsg, 500)
       } else {
-        throw new DbError('Can\'t query database', 500)
+        throw new DbError("Can't query database", 500)
       }
     }
   })

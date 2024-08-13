@@ -1,12 +1,12 @@
-import { PublicUser } from "./user";
+import { PublicUser } from './user'
 
-export {};
+export {}
 declare global {
   namespace Express {
     interface User extends PublicUser {}
 
     interface Request {
-      user?: User | undefined;
+      user?: User | undefined
     }
   }
 }

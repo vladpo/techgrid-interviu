@@ -17,7 +17,7 @@ const series = ref<Array<SeriesOptionsRegistry['SeriesLineOptions']>>([
 
 const { on } = useWebSocket()
 on('currency:quotes', (cqs: CurrencyQuote[]) => {
-  cqs.forEach(cq => {
+  cqs.forEach((cq) => {
     const now = Date.now()
     const dataItem: PointOptionsObject = { x: now, y: cq.quote }
     if (cq.currency === Currency.USD) {
@@ -50,13 +50,10 @@ const chartOptions = computed<Highcharts.Options>(() => ({
     enabled: false
   }
 }))
-
 </script>
 
 <template>
   <Chart class="hc" :options="chartOptions" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -3,11 +3,7 @@ import logger from '../logging'
 import http from 'http'
 import express from 'express'
 import type { CorsOptions, CorsOptionsDelegate } from 'cors'
-import {
-  ClientToServerEvents,
-  ServerToClientEvents,
-  SocketResponse,
-} from 'demo-common'
+import { ClientToServerEvents, ServerToClientEvents, SocketResponse } from 'demo-common'
 import { DefaultEventsMap } from 'socket.io/dist/typed-events'
 
 const SERVER_PORT = 8080
@@ -19,7 +15,7 @@ export const corsOptions: CorsOptions | CorsOptionsDelegate = {
     'Authorization, Access-Control-Allow-Headers, Cache-Control, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers',
   credentials: true,
   maxAge: 30 * 60 * 60 * 1000,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200
 }
 
 const httpServer = http.createServer(expressApp)
@@ -48,7 +44,7 @@ export const io = new Server<
 >(httpServer, {
   cors: corsOptions,
   transports: ['websocket', 'polling'],
-  allowEIO3: true,
+  allowEIO3: true
 })
 io.on('connection', (socket: WSocket) => {
   logger.info(`[server]: Connection created ${socket.id}`)

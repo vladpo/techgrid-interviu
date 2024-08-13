@@ -40,33 +40,33 @@ const wsState = ref<WsState<ServerToClientEvents>>({
 
 const useWebSocket =
   <ServerEvents extends EventsMap = DefaultEventsMap>() =>
-    (): UseWebSocketReturnType<ServerEvents> => {
-      const socket: UnwrapRef<WsState<ServerEvents>['socket']> = wsState.value.socket;
+  (): UseWebSocketReturnType<ServerEvents> => {
+    const socket: UnwrapRef<WsState<ServerEvents>['socket']> = wsState.value.socket
 
-      socket.on('connect', () => {
-        console.log('socket connected')
-      })
+    socket.on('connect', () => {
+      console.log('socket connected')
+    })
 
-      socket.on('disconnect', () => {
-        console.log('socket disconnect')
-      })
+    socket.on('disconnect', () => {
+      console.log('socket disconnect')
+    })
 
-      if (!socket.connected) {
-        socket.connect()
-      }
+    if (!socket.connected) {
+      socket.connect()
+    }
 
-      return {
-        webSocket: wsState,
-        emit: <E extends keyof ClientToServerEvents>(
-          eventName: E,
-          ...data: Parameters<ClientToServerEvents[E]>
-        ): void => {
-          socket.emit(eventName, ...data)
-        },
-        on: <E extends EventNames<ServerEvents>>(eventName: E, callback: ServerEvents[E]): void => {
-          socket.on(eventName, callback)
-        }
+    return {
+      webSocket: wsState,
+      emit: <E extends keyof ClientToServerEvents>(
+        eventName: E,
+        ...data: Parameters<ClientToServerEvents[E]>
+      ): void => {
+        socket.emit(eventName, ...data)
+      },
+      on: <E extends EventNames<ServerEvents>>(eventName: E, callback: ServerEvents[E]): void => {
+        socket.on(eventName, callback)
       }
     }
+  }
 
 export default useWebSocket<ServerToClientEvents>()

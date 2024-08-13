@@ -1,11 +1,11 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import {
   PATH_CURRENCY_GRAPH_QUOTES,
   PATH_CURRENCY_TABLE_QUOTES,
   PATH_HOME,
   PATH_LOGIN,
-  PATH_REGISTER,
+  PATH_REGISTER
 } from '@/router'
 import { computed, ref, watchEffect } from 'vue'
 import useSession from '@/session'
@@ -28,52 +28,52 @@ const path = computed(() => route.path)
 </script>
 
 <template>
-  <div class='bg-gradient-to-br from-gray-700 via-gray-900 to-black transition-all text-white'>
+  <div class="bg-gradient-to-br from-gray-700 via-gray-900 to-black transition-all text-white">
     <header>
       <nav>
-        <div class='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-          <div class='hidden w-full md:block md:w-auto'>
-            <RouterLink :to='pathHome' :class='path === pathHome ? "text-white" : "text-white/60"'
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <div class="hidden w-full md:block md:w-auto">
+            <RouterLink :to="pathHome" :class="path === pathHome ? 'text-white' : 'text-white/60'"
               >Home
             </RouterLink>
             <RouterLink
-              :to='pathTableQuotes'
-              v-if='!isExpired'
-              :class='path === pathTableQuotes ? "text-white" : "text-white/60"'
+              :to="pathTableQuotes"
+              v-if="!isExpired"
+              :class="path === pathTableQuotes ? 'text-white' : 'text-white/60'"
               >Currency Table Quotes
             </RouterLink>
             <RouterLink
-              :to='pathGraphQuotes'
-              v-if='!isExpired'
-              :class='path === pathGraphQuotes ? "text-white" : "text-white/60"'
+              :to="pathGraphQuotes"
+              v-if="!isExpired"
+              :class="path === pathGraphQuotes ? 'text-white' : 'text-white/60'"
               >Currency Graph Quotes
             </RouterLink>
             <RouterLink
-              :to='pathLogin'
-              v-if='isExpired'
-              :class='path === pathLogin ? "text-white" : "text-white/60"'
+              :to="pathLogin"
+              v-if="isExpired"
+              :class="path === pathLogin ? 'text-white' : 'text-white/60'"
               >Login
             </RouterLink>
             <RouterLink
-              :to='pathRegister'
-              v-if='isExpired'
-              :class='path === pathRegister ? "text-white" : "text-white/60"'
+              :to="pathRegister"
+              v-if="isExpired"
+              :class="path === pathRegister ? 'text-white' : 'text-white/60'"
               >Register
             </RouterLink>
             <RouterLink
-              :to='pathHome'
-              @click='onLogout'
-              v-if='!isExpired'
-              class='text-white/60'
-              active-class='text-white'
+              :to="pathHome"
+              @click="onLogout"
+              v-if="!isExpired"
+              class="text-white/60"
+              active-class="text-white"
               >Logout
             </RouterLink>
-            <span v-if='error'>{{ error }}</span>
+            <span v-if="error">{{ error }}</span>
           </div>
         </div>
       </nav>
     </header>
-    <main class='min-h-screen'>
+    <main class="min-h-screen">
       <RouterView />
     </main>
   </div>

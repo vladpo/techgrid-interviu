@@ -20,7 +20,7 @@
     "clean:server:modules": "cd demo-server && npm run clean:modules",
     "deploy-assets": "npm run build:client && rm -rf demo-server/public && cp -a demo-client/dist demo-server/public",
     "format:check": "prettier --list-different './demo-{client,common,server}/**/*.{js,ts,tsx,vue}' './**/*.json'",
-    "format:fix": "prettier --write './demo-{client,common,server}/**/*.{js,ts,tsx,vue}' './**/*.json'",
+    "format:fix": "prettier --write './demo-{client,common,server}/src/**/*.{js,ts,tsx,vue}' './**/*.json'",
     "install:client": "cd demo-client && npm install",
     "install:common": "cd demo-common && npm install",
     "install:server": "cd demo-server && npm install",
